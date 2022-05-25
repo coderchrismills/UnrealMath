@@ -71,12 +71,24 @@ void ASphereSphereIntersectionActor::Tick(float DeltaTime)
 		float s1_to_p_length = (d * d - sphere_two_radius * sphere_two_radius + sphere_one_radius * sphere_one_radius);
 		FVector point_p = sphere_one_center + ((s1_to_s2 / s1_to_s2_legth) * (s1_to_p_length / (2 * d)));
 		
-		DrawDebugLine(GetWorld(), sphere_one_center, point_p, FColor::Red, false, -1, 0, 20);
+		DrawDebugLine(GetWorld(), sphere_one_center, point_p, FColor::Purple, false, -1, 0, 20);
 
-		FVector s1_to_p = sphere_one_center - point_p;
+		FVector s1_to_p = point_p - sphere_one_center;
 		float overlap_radius = FMath::Sqrt((sphere_one_radius * sphere_one_radius) - (s1_to_p.Size() * s1_to_p.Size()));
 
-		DrawDebugCircle(GetWorld(), point_p, overlap_radius, 180, FColor::Emerald, false, -1, 0, 20, FVector(1,0,0), FVector(0, 1, 0));
+		FVector s1_to_p_normalized = s1_to_p;
+		s1_to_p_normalized.Normalize();
+
+		FVector other_vector = s1_to_p + FVector(overlap_radius, overlap_radius, overlap_radius);
+		other_vector.Normalize();
+
+		FVector s1_to_p_orthoganal1 = FVector::CrossProduct(s1_to_p_normalized, other_vector);
+		s1_to_p_orthoganal1.Normalize();
+
+		FVector s1_to_p_orthoganal2 = FVector::CrossProduct(s1_to_p, s1_to_p_orthoganal1);
+		s1_to_p_orthoganal2.Normalize();
+
+		DrawDebugCircle(GetWorld(), point_p, overlap_radius, 180, FColor::Orange, false, -1, 0, 15, s1_to_p_orthoganal2, s1_to_p_orthoganal1);
 	}
 }
 
