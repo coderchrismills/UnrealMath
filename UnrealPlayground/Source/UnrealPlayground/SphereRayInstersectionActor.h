@@ -4,26 +4,27 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "NearestPointToLineActor.generated.h"
+#include <Runtime/Engine/Classes/Components/SphereComponent.h>
+#include "SphereRayInstersectionActor.generated.h"
 
 UCLASS()
-class UNREALMATH_API ANearestPointToLineActor : public AActor
+class UNREALPLAYGROUND_API ASphereRayInstersectionActor : public AActor
 {
 	GENERATED_BODY()
 	
 public:	
 	// Sets default values for this actor's properties
-	ANearestPointToLineActor();
+	ASphereRayInstersectionActor();
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-	
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	AActor *m_point_s;
 	AActor *m_point_t;
-	AActor *m_point_p;
+	AActor *m_sphere;
 };

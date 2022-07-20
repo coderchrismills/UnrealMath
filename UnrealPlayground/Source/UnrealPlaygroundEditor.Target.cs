@@ -3,12 +3,12 @@
 using UnrealBuildTool;
 using System.Collections.Generic;
 
-public class UnrealMathEditorTarget : TargetRules
+public class UnrealPlaygroundEditorTarget : TargetRules
 {
-	public UnrealMathEditorTarget( TargetInfo Target) : base(Target)
+	public UnrealPlaygroundEditorTarget( TargetInfo Target) : base(Target)
 	{
 		Type = TargetType.Editor;
 		DefaultBuildSettings = BuildSettingsVersion.V2;
-		ExtraModuleNames.AddRange( new string[] { "UnrealMath" } );
+		ExtraModuleNames.AddRange( new string[] { "UnrealPlayground" } );
 	}
 }

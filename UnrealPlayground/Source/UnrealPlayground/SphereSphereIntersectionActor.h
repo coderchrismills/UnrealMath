@@ -7,7 +7,7 @@
 #include "SphereSphereIntersectionActor.generated.h"
 
 UCLASS()
-class UNREALMATH_API ASphereSphereIntersectionActor : public AActor
+class UNREALPLAYGROUND_API ASphereSphereIntersectionActor : public AActor
 {
 	GENERATED_BODY()
 	

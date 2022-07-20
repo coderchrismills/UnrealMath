@@ -8,7 +8,7 @@
 
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
-class UNREALMATH_API UTranslatorComponent : public UActorComponent
+class UNREALPLAYGROUND_API UTranslatorComponent : public UActorComponent
 {
 	GENERATED_BODY()
 
