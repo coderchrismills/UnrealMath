@@ -24,6 +24,12 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	UPROPERTY(EditDefaultsOnly, Category="Spawning")
+	TSubclassOf<AActor> m_actor_to_spawn;
+
+	UFUNCTION()
+	ABoidActor* spawn_boid(FVector location, FRotator rotation);
+
 private:
-	TArray<ABoidActor*> Boids;
+	TArray<ABoidActor*> m_boids;
 };
