@@ -29,9 +29,9 @@ public:
                    float perception_radius,
                    float max_applied_force, 
                    float max_flock_speed);
-
-    void update_neighbors(const TArray<ABoidActor*>& flock);
-
+    
+    void update(const TArray<ABoidActor *> &flock, float delta_time);
+ 
     void set_cohesion_intensity(float value) { m_cohesion_intensity= value; }
     void set_separation_intensity(float value) { m_separation_intensity= value; }
     void set_alignment_intensity(float value) { m_alignment_intensity= value; }
@@ -56,6 +56,7 @@ private:
     FVector m_acceleration;
     TArray<ABoidActor*> m_neighbors;
 
+    void update_neighbors(const TArray<ABoidActor *> &flock);
     void update_cohesion();
     void update_separation();
     void update_alignment();

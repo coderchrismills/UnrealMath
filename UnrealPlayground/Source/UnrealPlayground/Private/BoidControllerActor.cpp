@@ -104,7 +104,7 @@ void ABoidControllerActor::Tick(float DeltaTime)
     Super::Tick(DeltaTime);
     for (ABoidActor *boid : m_boids)
     {
-        boid->update_neighbors(m_boids);
+        boid->update(m_boids, DeltaTime);
     }
 }
 

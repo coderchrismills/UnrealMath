@@ -7,7 +7,7 @@
 ABoidActor::ABoidActor()
 {
     // Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-    PrimaryActorTick.bCanEverTick = true;
+    PrimaryActorTick.bCanEverTick = false;
     RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("RootScene"));
     m_cohesion_intensity= 0;
     m_separation_intensity= 0;
@@ -30,17 +30,6 @@ void ABoidActor::BeginPlay()
 void ABoidActor::Tick(float DeltaTime)
 {
     Super::Tick(DeltaTime);
-    if (m_neighbors.Num() > 0)
-    {
-        update_cohesion();
-        update_separation();
-        update_alignment();
-    }
-    
-    update_bounds();
-    update_transform(DeltaTime);
-
-    update_debug();
 }
 
 void ABoidActor::configure(float cohesion_intensity, 
@@ -56,6 +45,23 @@ void ABoidActor::configure(float cohesion_intensity,
     m_max_applied_force= max_applied_force;
     m_max_flock_speed= max_flock_speed;
     m_perception_radius= perception_radius;
+}
+
+void ABoidActor::update(const TArray<ABoidActor *> &flock, float delta_time)
+{
+    update_neighbors(flock);
+
+    if (m_neighbors.Num() > 0)
+    {
+        update_cohesion();
+        update_separation();
+        update_alignment();
+    }
+
+    update_bounds();
+    update_transform(delta_time);
+
+    update_debug();
 }
 
 void ABoidActor::update_neighbors(const TArray<ABoidActor*> &flock)
