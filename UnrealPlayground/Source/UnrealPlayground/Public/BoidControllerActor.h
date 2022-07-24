@@ -30,6 +30,42 @@ public:
 	UFUNCTION()
 	ABoidActor* spawn_boid(FVector location, FRotator rotation);
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Boid Config")
+	float m_cohesion_intensity;
+	
+	UFUNCTION(BlueprintCallable)
+	void set_cohesion_intensity(float value);
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Boid Config")
+    float m_separation_intensity;
+    
+	UFUNCTION(BlueprintCallable)
+    void set_separation_intensity(float value);
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Boid Config")
+    float m_alignment_intensity;
+    
+	UFUNCTION(BlueprintCallable)
+    void set_alignment_intensity(float value);
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Boid Config")
+    float m_radius_of_perception;
+
+    UFUNCTION(BlueprintCallable)
+    void set_perception_radius(float value);
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Boid Config")
+    float m_max_applied_force;
+
+    UFUNCTION(BlueprintCallable)
+    void set_max_applied_force(float value);
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Boid Config")
+    float m_max_flock_speed;
+
+    UFUNCTION(BlueprintCallable)
+    void set_max_flock_speed(float value);
+
 private:
 	TArray<ABoidActor*> m_boids;
 };
